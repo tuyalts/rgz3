@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ТКЗ Красный котельщик</title>
+        <link rel="stylesheet" href="../main.css">
+        <link rel="shortcut icon" href="../favicon/favicon.ico" type="image">
+        <link rel="icon" href="../favicon/favicon-16x16.png">
+        <link rel="icon" href="../favicon/favicon-32x32.png">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script defer src="../currency.js"></script>
+    </head>
+
+    <body>
+  
+        <div class="page-wrapper">
+        
+            <header>
+                <div>
+                    <img id="header-logo" src="../foto/headers.png">
+                </div>
+
+                <div><a class="a-header" href="https://tkz.su/customers/references/">География поставок</a></div>
+                
+                <div class="search">
+                    
+                    <input class="search-b" type="submit" value='Найти'>
+                    
+                    <div class="search-l"><img src="../foto/lupa.png"   alt="">
+                    </div>
+
+                </div>
+
+            </header>
+
+            <main>
+                <section class="converter">
+                    <h2>Калькулятор валют</h2>
+                    <p>Курс SGD: <span data-value="SGD">загрузка...</span> ₽</p>
+                    <p>Курс RUB: <span data-value="RUB">1.00</span> ₽</p>
+
+                    <label>Введите сумму:</label>
+                    <input type="number" id="input" placeholder="Введите сумму">
+
+                    <label>Из валюты:</label>
+                    <select id="exampleFormControlSelect1">
+                        <option value="RUB">RUB</option>
+                        <option value="SGD">SGD</option>
+                    </select>
+
+                    <label>В валюту:</label>
+                    <select id="exampleFormControlSelect2">
+                        <option value="RUB">RUB</option>
+                        <option value="SGD">SGD</option>
+                    </select>
+
+                    <label>Результат:</label>
+                    <input type="text" id="result" readonly>
+                </section>
+
+                <section class="converter">
+                    <h2>Динамика курса за месяц</h2>
+                    <button id="build-graph">Построить график</button>
+                    <div id="manual-graph"></div>
+                    <div id="graph-info" style="margin-top: 10px; font-weight: bold;"></div>
+
+                </section>
+
+
+            </main>
+
+            <footer>
+                <div>© 2025 ТКЗ «Красный котельщик».</div>
+                <div>Россия, Ростовская область, г. Таганрог, ул. Ленина, д. 220 Таганрог</div> 
+                <div>Телефон: +7 (8634) 313-601</div>
+            </footer>
+        
+        </div>
+
+        <nav class="side-menu">
+            <a href="about.html">О компании</a>
+            <a href="news.html">Новости</a>
+            <a href="currency.html">Курс валют</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="video.html">Видео</a>
+        </nav>
+
+        <a href="#" class="scroll-top-button">↑ Наверх</a>
+
+    </body>
+</html>
