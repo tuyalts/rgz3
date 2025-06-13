@@ -231,32 +231,68 @@ footer div {
   font-weight: bold;
 }
 
-#manual-graph {
+/* Контейнер графика */
+#graph {
   display: flex;
-  align-items: flex-end;
-  height: 200px;
+  align-items: baseline;
+  height: 250px;
   gap: 4px;
+  padding: 30px 0 0;
+  overflow-x: auto;
+  background-color: #f8f9fa;
+  border-radius: 4px;
   margin-top: 20px;
-  border-left: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  padding: 10px;
 }
 
+/* Контейнер для одного столбика */
+.bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 24px;
+  height: 100%;
+}
+
+/* Сам столбик */
 .bar {
-  width: 8px;
+  width: 20px;
   background-color: #8b0000;
-  transition: background-color 0.2s, transform 0.2s;
-  cursor: pointer;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+  transition: background-color 0.3s;
 }
 
 .bar:hover {
-  background-color: #a70000;
-  transform: scaleY(1.05);
+  background-color: #a52a2a;
 }
 
-.bar.active {
-  background-color: #ff4500;
-  box-shadow: 0 0 5px rgba(255, 69, 0, 0.6);
+/* Значение курса (скрыто по умолчанию) */
+.value-label {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  display: none;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+/* Показывать значение при наведении */
+.bar:hover .value-label {
+  display: block;
+}
+
+/* Дата под столбиком */
+.date-label {
+  margin-top: 5px;
+  font-size: 11px;
+  color: #6c757d;
+  font-weight: 500;
 }
 
  /* курс закончился */

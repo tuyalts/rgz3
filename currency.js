@@ -1,4 +1,3 @@
-// Объект с курсами валют
 const rates = {
   RUB: { Value: 1 } // Рубль — базовая валюта, 1 к 1
 };
@@ -57,20 +56,8 @@ function convertValue() {
   }
 }
 
-// Запуск
-getCurrencies();
-
-
-// курсы SGD 
-const sgdRates = [
-  61.3209, 61.0144, 61.0144, 61.0144, 60.6764,
-  61.7226, 62.0268, 62.1460, 61.8009, 61.8009,
-  61.8009, 61.8490, 61.7857, 62.0231, 61.9281,
-  62.3698, 62.3698, 62.3698, 61.8414, 61.6631,
-  61.7857, 62.2170, 62.6151, 62.6151, 62.6151,
-  62.6151, 62.6151, 62.5981, 63.3664, 62.3180,
-  62.3180
-];
+// ===================== КОД ДЛЯ ГРАФИКА =====================
+const graphContainer = document.getElementById("graph");
 
 const sgdDates = [
   "03.06.2025", "02.06.2025", "01.06.2025", "31.05.2025", "30.05.2025",
@@ -82,27 +69,59 @@ const sgdDates = [
   "04.05.2025"
 ];
 
-document.getElementById('build-graph').addEventListener('click', () => {
-  const graph = document.getElementById('manual-graph');
-  graph.innerHTML = '';
+const sgdRates = [
+  61.3209, 61.0104, 61.0189, 61.0144, 60.6764,
+  61.7226, 62.0268, 62.1460, 61.8088, 61.0004,
+  61.8009, 61.8490, 61.7857, 62.0231, 61.9281,
+  62.3690, 62.3798, 62.3698, 61.8414, 61.6631,
+  61.7857, 62.2170, 62.4151, 62.6151, 62.7090,
+  62.7151, 62.6151, 62.5981, 63.3664, 62.3180,
+  62.2080
+];
 
-  const max = Math.max(...sgdRates);
-
-  sgdRates.forEach((value, i) => {
+// 5-7) Создание графика
+function renderGraph() {
+  // Находим максимальное значение для масштабирования
+  const maxValue = Math.max(...sgdRates);
+  
+  // Очищаем контейнер
+  graphContainer.innerHTML = '';
+  
+  // Создание столбиков для каждой даты
+  for (let i = 0; i < sgdDates.length; i++) {
+    const barContainer = document.createElement('div');
+    barContainer.className = 'bar-container';
+    
+    // Создаем столбик
     const bar = document.createElement('div');
-    bar.classList.add('bar');
-    bar.style.height = `${(value / max) * 100}%`;
-    bar.title = `${sgdDates[i]}: ${value}₽`;
+    bar.className = 'bar';
+    
+    // Вычисляем высоту столбика
+    const height = (sgdRates[i] / maxValue) * 200;
+    bar.style.height = `${height}px`;
+    
+    // Создаем элемент для значения курса
+    const valueLabel = document.createElement('div');
+    valueLabel.className = 'value-label';
+    valueLabel.textContent = sgdRates[i].toFixed(2);
+    
+    // Создаем элемент для даты
+    const dateLabel = document.createElement('div');
+    dateLabel.className = 'date-label';
+    dateLabel.textContent = sgdDates[i].slice(0, 5); // "дд.мм"
+    
+    // Добавляем элементы в контейнер
+    bar.appendChild(valueLabel);
+    barContainer.appendChild(bar);
+    barContainer.appendChild(dateLabel);
+    
+    // Добавляем контейнер в график
+    graphContainer.appendChild(barContainer);
+  }
+}
 
-    // Клик по столбцу — выделить и показать инфо
-    bar.addEventListener('click', () => {
-      document.querySelectorAll('.bar').forEach(b => b.classList.remove('active'));
-      bar.classList.add('active');
-
-      const info = document.getElementById('graph-info');
-      info.textContent = ` ${sgdDates[i]} —  ${value.toFixed(4)} ₽`;
-    });
-
-    graph.appendChild(bar);
-  });
+// Запуск при загрузке страницы
+document.addEventListener("DOMContentLoaded", () => {
+  getCurrencies(); // Для конвертера
+  renderGraph();   // Для график
 });
